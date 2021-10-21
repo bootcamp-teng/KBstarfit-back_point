@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: goal-config
+  name: point-config
 data:
-  SERVLET_CONTEXT_PATH: /starfitgoal
-  
+  SERVLET_CONTEXT_PATH: /starfitpoint
   SERVICE_PORT: "8080"
 # MYSQL DB
   DB_HOST: mysql
