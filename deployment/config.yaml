@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: goal-config
+data:
+  SERVLET_CONTEXT_PATH: /starfitgoal
+  
+  SERVICE_PORT: "8080"
+# MYSQL DB
+  DB_HOST: mysql
+  DB_PORT: "3306"
+  DB_SERVER: mysql.teng
+  DB_NAME: point
+  DB_USERNAME: root
+  DB_PASSWORD: passw0rd
+  
