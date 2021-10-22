@@ -48,7 +48,7 @@ public class PointHistoryDomain {
 		return new ResponseEntity<String> (entity+"", HttpStatus.OK);
 	}
 
-	public ResponseEntity<List<PointHistory>> getPointList(String userId) {
+	public ResponseEntity<List<PointHistory>> getPointList(int userId) {
 		List<PointHistory> re = null;
 		try {
 			log.info("Start db select");

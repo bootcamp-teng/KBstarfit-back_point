@@ -28,7 +28,7 @@ public class PointController {
 	private PointService pointService;
 	
 	@GetMapping("/v1/benefit")	
-	@ApiOperation(value="혜택 정보 가져오기", notes="혜탹 정보를 제공합니다. ")
+	@ApiOperation(value="혜택 정보 가져오기", notes="혜택 정보를 제공합니다. ")
 	public ResponseEntity<List<Benefit>> getBenefitList() { 
 		return pointService.getBenefitList();
 	}
@@ -51,7 +51,7 @@ public class PointController {
 	}
 	
 	@PostMapping("/v1/benefit")
-	@ApiOperation(value="혜탹 정보 등록하기 ")
+	@ApiOperation(value="혜택 정보 등록하기 ")
 	public ResponseEntity <String > insertBenefit(
 			@RequestBody Benefit benefit
 		) throws Exception { 
@@ -60,7 +60,7 @@ public class PointController {
 	}
 	
 	@DeleteMapping("/v1/benefit/{benefitId}")
-	@ApiOperation(value="혜탹 정보 삭제하기 ")
+	@ApiOperation(value="혜택 정보 삭제하기 ")
 	public ResponseEntity <String > deleteGoal(
 			@PathVariable(name="benefitId",required = true ) Long benefitId
 		) throws Exception { 
@@ -68,15 +68,15 @@ public class PointController {
 		return pointService.deleteBenefit(benefitId);
 	}
 	
-	@GetMapping("/v1/point/{userId}")
+	@GetMapping("/v1/point/history/{userId}")
 	@ApiOperation(value="포인트 기록 조회하기")
 	public ResponseEntity <List<PointHistory>> getUserPointList(
-				@PathVariable(name="userId", required = true) String userId
+				@PathVariable(name="userId", required = true) int userId
 			) throws Exception {
 		return pointService.getPointList(userId);
 	}
 	
-	@GetMapping("/v1/point/{Id}")
+	@GetMapping("/v1/point/history/detail/{Id}")
 	@ApiOperation(value = "기록 상세 조회")
 	public ResponseEntity <Optional<PointHistory>> getPoint(
 			@PathVariable(name="Id", required = true) Long Id
@@ -103,12 +103,12 @@ public class PointController {
 	@GetMapping("/v1/current/{userId}")	
 	@ApiOperation(value="유저의 현재 포인트 정보 가져오기", notes="유저의 현재 포인트 정보를 제공합니다. ")
 	public ResponseEntity<List<CurrentPoint>> getCurPointList(
-			@PathVariable(name="userId", required = true) String userId
+			@PathVariable(name="userId", required = true) int userId
 			) { 
 		return pointService.getCurPointList(userId);
 	}
 	
-	@GetMapping("/v1/current/{currentPointId}")
+	@GetMapping("/v1/current/detail/{currentPointId}")
 	@ApiOperation(value="아이디로 포인트 정보 가져오기 ")
 	public ResponseEntity <Optional<CurrentPoint>> getCurPointById(
 				@PathVariable (name="currentPointId", required = true) Long curPointId

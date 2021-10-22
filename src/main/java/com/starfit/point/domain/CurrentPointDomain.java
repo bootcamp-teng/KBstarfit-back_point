@@ -47,7 +47,7 @@ public class CurrentPointDomain {
 		return new ResponseEntity<String> (entity+"", HttpStatus.OK);
 	}
 
-	public ResponseEntity<List<CurrentPoint>> getCurPointList(String userId) {
+	public ResponseEntity<List<CurrentPoint>> getCurPointList(int userId) {
 		List<CurrentPoint> re = null;
 		try {
 			log.info("Start db select");

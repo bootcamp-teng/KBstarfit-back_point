@@ -9,5 +9,5 @@ import com.starfit.point.model.CurrentPoint;
 
 @Repository
 public interface CurrentPointRepository extends JpaRepository<CurrentPoint, Long> {
-	List<CurrentPoint> findByuserId(String userId);
+	List<CurrentPoint> findByuserId(int userId);
 }

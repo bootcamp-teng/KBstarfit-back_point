@@ -9,5 +9,5 @@ import com.starfit.point.model.PointHistory;
 
 @Repository
 public interface PointHistoryRepository extends JpaRepository<PointHistory, Long> {
-	List<PointHistory> findByuserId(String userId);
+	List<PointHistory> findByuserId(int userId);
 }

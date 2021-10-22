@@ -54,14 +54,14 @@ public class PointService {
 		return pointHistoryDomain.updatePoint(point);
 	}
 
-	public ResponseEntity<List<PointHistory>> getPointList(String userId) throws Exception {
+	public ResponseEntity<List<PointHistory>> getPointList(int userId) throws Exception {
 		return pointHistoryDomain.getPointList(userId);
 	}
 
 	public ResponseEntity<Optional<PointHistory>> getPoint(Long Id) throws Exception {
 		return pointHistoryDomain.getPoint(Id);
 	}
-	public ResponseEntity <List<CurrentPoint>> getCurPointList(String userId) { 
+	public ResponseEntity <List<CurrentPoint>> getCurPointList(int userId) { 
 		return currentPointDomain.getCurPointList(userId);
 	}
 	
