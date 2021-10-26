@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +48,25 @@ public class PointService {
 	}
 
 	public ResponseEntity<String> insertPoint(PointHistory point) throws Exception {
-		return pointHistoryDomain.insertPoint(point);
+		//ResponseEntity<Optional<CurrentPoint>> currPoint = currentPointDomain.getCurPoint(point.getId());
+		if(!pointHistoryDomain.insertPoint(point).getStatusCode().equals(HttpStatus.OK)){
+			throw new Exception();
+		}
+		ResponseEntity<List<CurrentPoint>> currPointEntity = currentPointDomain.getCurPointList(point.getUserId());
+		List<CurrentPoint> currPointList  = currPointEntity.getBody();
+		CurrentPoint currPoint = new CurrentPoint();
+		if(!currPointList.isEmpty()) {
+			currPoint = currPointList.get(0);
+			int prevPoint = currPoint.getCurrentPoint();
+			currPoint.setCurrentPoint(prevPoint + point.getPoint());
+			return currentPointDomain.updateCurPoint(currPoint);
+		}
+		else {
+			currPoint.setCurrentPoint(point.getPoint());
+			currPoint.setUserId(point.getUserId());
+			return currentPointDomain.insertCurPoint(currPoint);
+		}
+		//return pointHistoryDomain.insertPoint(point,currPoint);
 	}
 
 	public ResponseEntity<String> updatePoint( PointHistory point) throws Exception {

@@ -33,12 +33,13 @@ public class CurrentPointDomain {
 	}
 
 	public ResponseEntity<String> updateCurPoint(CurrentPoint point) throws Exception {
-		log.info("Start db update==>"+point.getId());
+		log.info("Start db update==>"+point.toString());
 		Optional<CurrentPoint> entity = CurrentPointRepo.findById(point.getId());
-		
+
 		if(entity.isPresent()) {
 			entity.get().setCurrentPoint(point.getCurrentPoint());
-			entity.get().setUserId(point.getCurrentPoint());
+			entity.get().setUserId(point.getUserId());
+			CurrentPoint re  = CurrentPointRepo.save(point);
 		}
 
 		

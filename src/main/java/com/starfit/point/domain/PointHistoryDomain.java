@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.starfit.point.data.BenefitRepository;
 import com.starfit.point.data.PointHistoryRepository;
 import com.starfit.point.model.PointHistory;
 
@@ -26,7 +25,6 @@ public class PointHistoryDomain {
 		log.info("Start db insert");
 		PointHistory re  = PointHistoryRepo.save(point);
 		log.debug("result :"+ re);
-		
 		return new ResponseEntity<String> (re+"", HttpStatus.OK);
 	}
 
@@ -71,4 +69,6 @@ public class PointHistoryDomain {
 		}
 		return new ResponseEntity<Optional<PointHistory>> (re, HttpStatus.OK);
 	}
+
+	
 }
