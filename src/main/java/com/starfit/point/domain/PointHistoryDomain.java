@@ -1,5 +1,6 @@
 package com.starfit.point.domain;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public class PointHistoryDomain {
 	
 	public ResponseEntity<String> insertPoint(PointHistory point) throws Exception {
 		log.info("Start db insert");
+		point.setDate(LocalDateTime.now());
 		PointHistory re  = PointHistoryRepo.save(point);
 		log.debug("result :"+ re);
 		return new ResponseEntity<String> (re+"", HttpStatus.OK);
