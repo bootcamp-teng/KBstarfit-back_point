@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -52,7 +53,7 @@ public class PointHistoryDomain {
 		List<PointHistory> re = null;
 		try {
 			log.info("Start db select");
-			re = PointHistoryRepo.findByuserId(userId);
+			re = PointHistoryRepo.findByuserId(userId,Sort.by(Sort.Order.desc("date"),Sort.Order.desc("id")));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
